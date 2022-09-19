@@ -1,0 +1,11 @@
+Model Information:
+* title:	Grim Reaper
+* source:	https://sketchfab.com/3d-models/grim-reaper-f9f1c51f5bd74a01a721a88c278c3baa
+* author:	vasian-65 (https://sketchfab.com/vasian-65)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Grim Reaper" (https://sketchfab.com/3d-models/grim-reaper-f9f1c51f5bd74a01a721a88c278c3baa) by vasian-65 (https://sketchfab.com/vasian-65) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

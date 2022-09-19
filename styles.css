@@ -1,0 +1,31 @@
+#sword {
+    position: absolute;
+    top: 60%;
+    left: 60%;
+    visibility: hidden;
+    user-select: none;
+    color: white;
+}
+
+#scythe {
+    position: absolute;
+    top: 60%;
+    left: 60%;
+    visibility: hidden;
+    user-select: none;
+    color: white;
+}
+
+#img {
+    height: 50px;
+    width: 50px;
+}
+
+#killCount {
+    position: absolute;
+    bottom: 1%;
+    right: 1%;
+    visibility: hidden;
+    user-select: none;
+    color: white;
+}

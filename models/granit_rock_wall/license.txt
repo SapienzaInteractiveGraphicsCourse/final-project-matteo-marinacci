@@ -1,0 +1,11 @@
+Model Information:
+* title:	Granit Rock Wall
+* source:	https://sketchfab.com/3d-models/granit-rock-wall-f266044f40ec4127a0d82e430ca51471
+* author:	bilgehan.korkmaz (https://sketchfab.com/bilgehan.korkmaz)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Granit Rock Wall" (https://sketchfab.com/3d-models/granit-rock-wall-f266044f40ec4127a0d82e430ca51471) by bilgehan.korkmaz (https://sketchfab.com/bilgehan.korkmaz) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

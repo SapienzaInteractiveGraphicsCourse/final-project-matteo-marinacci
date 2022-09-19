@@ -1,0 +1,709 @@
+{
+  "accessors": [
+    {
+      "bufferView": 2,
+      "componentType": 5126,
+      "count": 202,
+      "max": [
+        1.5265275239944458,
+        1.6244933605194092,
+        0.44362565875053406
+      ],
+      "min": [
+        -1.5058132410049438,
+        -1.4000169038772583,
+        -2.5808844566345215
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 2424,
+      "componentType": 5126,
+      "count": 202,
+      "max": [
+        1.0,
+        0.9974175691604614,
+        0.997417688369751
+      ],
+      "min": [
+        -1.0,
+        -0.9974177479743958,
+        -0.997417688369751
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 1,
+      "componentType": 5126,
+      "count": 202,
+      "max": [
+        0.9986575841903687,
+        0.9986573457717896
+      ],
+      "min": [
+        0.0013424281496554613,
+        0.0015867948532104492
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 0,
+      "componentType": 5125,
+      "count": 1080,
+      "type": "SCALAR"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 4848,
+      "componentType": 5126,
+      "count": 202,
+      "max": [
+        1.5265275239944458,
+        1.6244933605194092,
+        0.44362565875053406
+      ],
+      "min": [
+        -1.5058132410049438,
+        -1.4000169038772583,
+        -2.5808844566345215
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 7272,
+      "componentType": 5126,
+      "count": 202,
+      "max": [
+        1.0,
+        0.9974175691604614,
+        0.997417688369751
+      ],
+      "min": [
+        -1.0,
+        -0.9974177479743958,
+        -0.997417688369751
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 1616,
+      "componentType": 5126,
+      "count": 202,
+      "max": [
+        0.9986575841903687,
+        0.9986573457717896
+      ],
+      "min": [
+        0.0013424281496554613,
+        0.0015867948532104492
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 0,
+      "byteOffset": 4320,
+      "componentType": 5125,
+      "count": 1080,
+      "type": "SCALAR"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 9696,
+      "componentType": 5126,
+      "count": 1585,
+      "max": [
+        16.29946517944336,
+        3.467869997024536,
+        15.177935600280762
+      ],
+      "min": [
+        -52.74609375,
+        -1.4477640390396118,
+        -74.08328247070313
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 28716,
+      "componentType": 5126,
+      "count": 1585,
+      "max": [
+        0.9998382925987244,
+        0.9998392462730408,
+        0.997886598110199
+      ],
+      "min": [
+        -0.9999854564666748,
+        -0.9998681545257568,
+        -0.999872624874115
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 3,
+      "componentType": 5126,
+      "count": 1585,
+      "max": [
+        0.9998623132705688,
+        0.9996107816696167,
+        0.9999202489852905,
+        1.0
+      ],
+      "min": [
+        -0.9517102837562561,
+        -0.9999788403511047,
+        -0.98783278465271,
+        -1.0
+      ],
+      "type": "VEC4"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 3232,
+      "componentType": 5126,
+      "count": 1585,
+      "max": [
+        0.9987784624099731,
+        0.9987778067588806
+      ],
+      "min": [
+        0.0012214796151965857,
+        0.0014663934707641602
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 15912,
+      "componentType": 5126,
+      "count": 1585,
+      "max": [
+        0.9987784624099731,
+        0.9987778067588806
+      ],
+      "min": [
+        0.0012214796151965857,
+        0.0014663934707641602
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 28592,
+      "componentType": 5126,
+      "count": 1585,
+      "max": [
+        0.9987784624099731,
+        0.9987778067588806
+      ],
+      "min": [
+        0.0012214796151965857,
+        0.0014663934707641602
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 41272,
+      "componentType": 5126,
+      "count": 1585,
+      "max": [
+        0.9987784624099731,
+        0.9987778067588806
+      ],
+      "min": [
+        0.0012214796151965857,
+        0.0014663934707641602
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 0,
+      "byteOffset": 8640,
+      "componentType": 5125,
+      "count": 7212,
+      "type": "SCALAR"
+    },
+    {
+      "bufferView": 4,
+      "componentType": 5126,
+      "count": 66,
+      "max": [
+        2.8333332538604736
+      ],
+      "min": [
+        0.0
+      ],
+      "type": "SCALAR"
+    },
+    {
+      "bufferView": 5,
+      "componentType": 5126,
+      "count": 66,
+      "max": [
+        -0.704416036605835,
+        0.06162841618061066,
+        0.06162841618061066,
+        0.7071067690849304
+      ],
+      "min": [
+        -0.7071067690849304,
+        -0.06162841618061066,
+        -0.06162841618061066,
+        0.704416036605835
+      ],
+      "type": "VEC4"
+    },
+    {
+      "bufferView": 4,
+      "byteOffset": 264,
+      "componentType": 5126,
+      "count": 62,
+      "max": [
+        2.8333332538604736
+      ],
+      "min": [
+        0.0
+      ],
+      "type": "SCALAR"
+    },
+    {
+      "bufferView": 5,
+      "byteOffset": 1056,
+      "componentType": 5126,
+      "count": 62,
+      "max": [
+        0.5416752099990845,
+        0.5416752099990845,
+        -0.45451948046684265,
+        0.5416752099990845
+      ],
+      "min": [
+        0.45451948046684265,
+        0.45451948046684265,
+        -0.5416752099990845,
+        0.45451948046684265
+      ],
+      "type": "VEC4"
+    }
+  ],
+  "animations": [
+    {
+      "channels": [
+        {
+          "sampler": 0,
+          "target": {
+            "node": 7,
+            "path": "rotation"
+          }
+        },
+        {
+          "sampler": 1,
+          "target": {
+            "node": 9,
+            "path": "rotation"
+          }
+        }
+      ],
+      "name": "CINEMA_4D_Main",
+      "samplers": [
+        {
+          "input": 16,
+          "interpolation": "LINEAR",
+          "output": 17
+        },
+        {
+          "input": 18,
+          "interpolation": "LINEAR",
+          "output": 19
+        }
+      ]
+    }
+  ],
+  "asset": {
+    "extras": {
+      "author": "kanjs (https://sketchfab.com/kanjs)",
+      "license": "CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)",
+      "source": "https://sketchfab.com/3d-models/the-watcher-series-scythe-free-but-read-15a2458514944d1198e675a6833add6a",
+      "title": "The Watcher Series - Scythe - Free but Read"
+    },
+    "generator": "Sketchfab-12.66.0",
+    "version": "2.0"
+  },
+  "bufferViews": [
+    {
+      "buffer": 0,
+      "byteLength": 37488,
+      "name": "floatBufferViews",
+      "target": 34963
+    },
+    {
+      "buffer": 0,
+      "byteLength": 53952,
+      "byteOffset": 37488,
+      "byteStride": 8,
+      "name": "floatBufferViews",
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 47736,
+      "byteOffset": 91440,
+      "byteStride": 12,
+      "name": "floatBufferViews",
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 25360,
+      "byteOffset": 139176,
+      "byteStride": 16,
+      "name": "floatBufferViews",
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 512,
+      "byteOffset": 164536,
+      "name": "floatBufferViews"
+    },
+    {
+      "buffer": 0,
+      "byteLength": 2048,
+      "byteOffset": 165048,
+      "byteStride": 16,
+      "name": "floatBufferViews"
+    }
+  ],
+  "buffers": [
+    {
+      "byteLength": 167096,
+      "uri": "scene.bin"
+    }
+  ],
+  "extensionsRequired": [
+    "KHR_materials_pbrSpecularGlossiness"
+  ],
+  "extensionsUsed": [
+    "KHR_materials_pbrSpecularGlossiness"
+  ],
+  "images": [
+    {
+      "uri": "textures/material_diffuse.png"
+    },
+    {
+      "uri": "textures/scyth_diffuse.png"
+    },
+    {
+      "uri": "textures/scyth_emissive.png"
+    },
+    {
+      "uri": "textures/scyth_normal.png"
+    }
+  ],
+  "materials": [
+    {
+      "doubleSided": true,
+      "emissiveFactor": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "emissiveTexture": {
+        "index": 0
+      },
+      "extensions": {
+        "KHR_materials_pbrSpecularGlossiness": {
+          "diffuseFactor": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "diffuseTexture": {
+            "index": 0
+          },
+          "glossinessFactor": 0.9228515770671375,
+          "specularFactor": [
+            0.026902532104621756,
+            0.026902532104621756,
+            0.026902532104621756
+          ]
+        }
+      },
+      "name": "material"
+    },
+    {
+      "doubleSided": true,
+      "emissiveFactor": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "emissiveTexture": {
+        "index": 2
+      },
+      "extensions": {
+        "KHR_materials_pbrSpecularGlossiness": {
+          "diffuseFactor": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "diffuseTexture": {
+            "index": 1
+          },
+          "glossinessFactor": 1.0,
+          "specularFactor": [
+            0.07086768657933237,
+            0.07086768657933237,
+            0.07086768657933237
+          ]
+        }
+      },
+      "name": "scyth",
+      "normalTexture": {
+        "index": 3
+      }
+    }
+  ],
+  "meshes": [
+    {
+      "name": "eye_eye_0",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 1,
+            "POSITION": 0,
+            "TEXCOORD_0": 2
+          },
+          "indices": 3,
+          "material": 0,
+          "mode": 4
+        }
+      ]
+    },
+    {
+      "name": "eye_2_eye_0",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 5,
+            "POSITION": 4,
+            "TEXCOORD_0": 6
+          },
+          "indices": 7,
+          "material": 0,
+          "mode": 4
+        }
+      ]
+    },
+    {
+      "name": "scyth_scyth_0",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 9,
+            "POSITION": 8,
+            "TANGENT": 10,
+            "TEXCOORD_0": 11,
+            "TEXCOORD_1": 12,
+            "TEXCOORD_2": 13,
+            "TEXCOORD_3": 14
+          },
+          "indices": 15,
+          "material": 1,
+          "mode": 4
+        }
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "children": [
+        1
+      ],
+      "matrix": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        2.220446049250313e-16,
+        -1.0,
+        0.0,
+        0.0,
+        1.0,
+        2.220446049250313e-16,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "name": "Sketchfab_model"
+    },
+    {
+      "children": [
+        2
+      ],
+      "matrix": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "name": "Scythe.fbx"
+    },
+    {
+      "children": [
+        3
+      ],
+      "name": "Object_2"
+    },
+    {
+      "children": [
+        4,
+        6
+      ],
+      "name": "RootNode"
+    },
+    {
+      "children": [
+        5
+      ],
+      "name": "CINEMA_4D_Editor",
+      "rotation": [
+        -0.561251163482666,
+        0.6019263863563538,
+        0.38738971948623657,
+        -0.4154647886753082
+      ],
+      "translation": [
+        8.084649085998535,
+        114.40925598144531,
+        -10.583715438842773
+      ]
+    },
+    {
+      "name": "Object_5"
+    },
+    {
+      "children": [
+        7,
+        9,
+        11
+      ],
+      "name": "Scythe"
+    },
+    {
+      "children": [
+        8
+      ],
+      "name": "eye",
+      "rotation": [
+        -0.7071068286895752,
+        -6.494670783442161e-17,
+        6.494670783442161e-17,
+        0.7071068286895752
+      ],
+      "translation": [
+        -6.298952102661133,
+        1.4657433032989502,
+        1.4655309915542603
+      ]
+    },
+    {
+      "mesh": 0,
+      "name": "eye_eye_0"
+    },
+    {
+      "children": [
+        10
+      ],
+      "name": "eye_2",
+      "rotation": [
+        0.5,
+        0.5,
+        -0.5,
+        0.5
+      ],
+      "translation": [
+        -6.186858654022217,
+        0.9503905773162842,
+        1.1452914476394653
+      ]
+    },
+    {
+      "mesh": 1,
+      "name": "eye_2_eye_0"
+    },
+    {
+      "children": [
+        12
+      ],
+      "name": "scyth",
+      "translation": [
+        -6.987666606903076,
+        1.1102230246251565e-16,
+        -8.068181037902832
+      ]
+    },
+    {
+      "mesh": 2,
+      "name": "scyth_scyth_0"
+    }
+  ],
+  "samplers": [
+    {
+      "magFilter": 9729,
+      "minFilter": 9987,
+      "wrapS": 10497,
+      "wrapT": 10497
+    }
+  ],
+  "scene": 0,
+  "scenes": [
+    {
+      "name": "Sketchfab_Scene",
+      "nodes": [
+        0
+      ]
+    }
+  ],
+  "textures": [
+    {
+      "sampler": 0,
+      "source": 0
+    },
+    {
+      "sampler": 0,
+      "source": 1
+    },
+    {
+      "sampler": 0,
+      "source": 2
+    },
+    {
+      "sampler": 0,
+      "source": 3
+    }
+  ]
+}

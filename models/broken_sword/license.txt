@@ -1,0 +1,11 @@
+Model Information:
+* title:	Broken Sword
+* source:	https://sketchfab.com/3d-models/broken-sword-2d2d9e1ae5144549b13fc19599f0adc8
+* author:	MJSFS (https://sketchfab.com/MJSFS)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Broken Sword" (https://sketchfab.com/3d-models/broken-sword-2d2d9e1ae5144549b13fc19599f0adc8) by MJSFS (https://sketchfab.com/MJSFS) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

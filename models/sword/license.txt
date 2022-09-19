@@ -1,0 +1,11 @@
+Model Information:
+* title:	Death Sword
+* source:	https://sketchfab.com/3d-models/death-sword-a9273502036643fdb1cf55b1c244ac16
+* author:	skyjimtw (https://sketchfab.com/skyjimtw)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Death Sword" (https://sketchfab.com/3d-models/death-sword-a9273502036643fdb1cf55b1c244ac16) by skyjimtw (https://sketchfab.com/skyjimtw) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

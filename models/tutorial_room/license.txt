@@ -1,0 +1,11 @@
+Model Information:
+* title:	Modular Dungeon Props
+* source:	https://sketchfab.com/3d-models/modular-dungeon-props-62ccabc4e78b4822ac8c5af74fe9c66a
+* author:	Logan Thomas (https://sketchfab.com/LThomas762)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Modular Dungeon Props" (https://sketchfab.com/3d-models/modular-dungeon-props-62ccabc4e78b4822ac8c5af74fe9c66a) by Logan Thomas (https://sketchfab.com/LThomas762) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
