@@ -157,7 +157,9 @@ function main() {
       enemy.update()
 
       character.moveCharacter(uid.startGame())
-      handlerAmmo.update(clock.getDelta())
+      if (!uid.gameOver()) {
+        handlerAmmo.update(clock.getDelta())
+      }
       tutorial_room.update()
       weapon.update(tutorial_room.isReady())
       character.update(tutorial_room.isReady(), weapon.isReady(), uid.startGame())
