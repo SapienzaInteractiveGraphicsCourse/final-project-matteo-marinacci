@@ -23,7 +23,7 @@
 
 #killCount {
     position: absolute;
-    bottom: 1%;
+    bottom: 0.5%;
     right: 1%;
     visibility: hidden;
     user-select: none;
@@ -51,5 +51,15 @@
     position:absolute;
     left: 36%;
     top: 45%;
+    font-size: 40px;
+}
+
+#finalKillScore{
+    position: absolute;
+    bottom: 62%;
+    right: 27%;
+    visibility: hidden;
+    user-select: none;
+    color: black;
     font-size: 40px;
 }

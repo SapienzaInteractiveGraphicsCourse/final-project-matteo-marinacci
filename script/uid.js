@@ -64,10 +64,19 @@ class Uid {
 
     killCountText = 0
 
+    deathMaterial = null
+    deathGeometry = null
+    deathMesh = null
+
+    gameOverMaterial = null
+    gameOverGeometry = null
+    gameOverMesh = null
+
     isHitted = false
     hasHitted = false
     recover = false
     increaseBar = false
+    flagDeath = false
 
     constructor(scene, camera, fontMenu, left, right, arrows) {
         this.scene = scene
@@ -279,18 +288,58 @@ class Uid {
                         this.hpMesh.position.set((-window.innerWidth / 2) + (this.hpX / 2), (window.innerHeight / 2) - 5, 0)
                     }
 
-                    if(this.recover){
+                    if (this.recover) {
                         this.recover = false
                         this.hpMesh.scale.set(this.hpX, 10)
                         this.hpMesh.position.set((-window.innerWidth / 2) + (this.hpX / 2), (window.innerHeight / 2) - 5, 0)
                     }
 
-                    if(this.increaseBar){
+                    if (this.increaseBar) {
                         this.increaseBar = false
                         this.hpMesh.scale.set(this.hpX, 10)
                         this.hpMesh.position.set((-window.innerWidth / 2) + (this.hpX / 2), (window.innerHeight / 2) - 5, 0)
                         this.hpLostMesh.scale.set(this.hpLostX, 8)
-                    this.hpLostMesh.position.set((-window.innerWidth / 2) + (this.hpLostX / 2), (window.innerHeight / 2) - 5, -1)
+                        this.hpLostMesh.position.set((-window.innerWidth / 2) + (this.hpLostX / 2), (window.innerHeight / 2) - 5, -1)
+                    }
+
+                    if (this.flagDeath) {
+                        this.deathMaterial = new THREE.MeshBasicMaterial({
+                            color: 0xff0000,
+                            transparent: true,
+                            opacity: 0.01
+                        })
+                        this.deathGeometry = new THREE.PlaneGeometry(window.innerWidth, window.innerHeight)
+                        this.deathMesh = new THREE.Mesh(this.deathGeometry, this.deathMaterial)
+                        this.scene.add(this.deathMesh)
+                        this.scene.remove(this.killMesh, this.hpLostMesh, this.hpMesh)
+                        var elem = document.getElementById("killCount");
+                        elem.style.visibility = "hidden";
+
+
+                        this.gameOverMaterial = new THREE.MeshBasicMaterial({ color: 0x000000, side: THREE.DoubleSide })
+                        this.gameOverGeometry = new TextGeometry('GameOver', {
+                            font: this.fontMenu,
+                            size: 100,
+                            height: 5,
+                            curveSegments: 12,
+        
+                        })
+                        this.gameOverMesh = new THREE.Mesh(this.gameOverGeometry, this.gameOverMaterial)
+        
+                        var gameOverPlanMaterial = new THREE.MeshBasicMaterial({
+                            visible: false
+                        })
+                        var gameOverPlan = new THREE.Mesh(new THREE.PlaneGeometry(425, 160), gameOverPlanMaterial);
+                        gameOverPlan.add(this.gameOverMesh)
+                        this.gameOverGeometry.computeBoundingBox()
+                        this.gameOverGeometry.center()
+                        gameOverPlan.position.set(0, 200, 3)
+                        this.scene.add(gameOverPlan)
+
+                        var finalMessage = document.getElementById("finalKillScore")
+                        finalMessage.style.visibility = "visible"
+                        var finalScore = document.getElementById("score")
+                        finalScore.innerText = this.killCountText.toString()
                     }
                 }
             }
@@ -329,8 +378,9 @@ class Uid {
     hitted() {
         this.isHitted = true
         this.hpX -= 10
-        if(this.hpX <= 0){
+        if (this.hpX <= 0) {
             this.hpX = 0
+            this.flagDeath = true
         }
     }
 
@@ -339,24 +389,26 @@ class Uid {
         this.killCountText += 1
         var elem = document.getElementById("killCount");
         elem.innerText = this.killCountText.toString();
-        if(this.killCountText%30==0){
+        if (this.killCountText % 30 == 0) {
             this.increaseBar = true
             this.hpLostX += 3
             this.hpX = this.hpLostX
         }
-        else{
-            if(this.killCountText%15 == 0){
+        else {
+            if (this.killCountText % 15 == 0) {
                 this.recover = true
-                var temp = Math.floor(this.hpLostX/20)
-                if((this.hpX + temp )>= this.hpLostX){
+                var temp = Math.floor(this.hpLostX / 20)
+                if ((this.hpX + temp) >= this.hpLostX) {
                     this.hpX = this.hpLostX
                 }
-                else{
-                    this.hpX += temp*10
+                else {
+                    this.hpX += temp * 10
                 }
             }
         }
-        
-        
+    }
+
+    gameOver() {
+        return this.flagDeath
     }
 }

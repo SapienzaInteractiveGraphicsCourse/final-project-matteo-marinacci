@@ -265,7 +265,7 @@ class Enemy {
                                 }
 
 
-                                if (this.dir.length() > 9.1 && !hitted) {
+                                if (this.dir.length() > 9.1 && !hitted && !this.uid.gameOver()) {
                                     enemy.translateOnAxis(tmp, 0.2)
                                     enemy.position.y = 0
                                 }

@@ -85,6 +85,8 @@ class Character {
     flagMenuExited = false
     flagMenuExiting = false
     tweenLeftHand = null
+    flagDisappear = false
+    tweenDeath = null
 
 
     LeftFwdSkirt2 = null;
@@ -663,438 +665,460 @@ class Character {
                         this.moveLeftHand()
 
                     }
-                    this.tweenLeftHand.update()
-                    if (!this.animateFlag && this.historyKey.size == 0) {
-                        this.animateFlag = true;
-                        this.startFluctuate()
-                    }
-                    else if (!this.animateFlag && this.historyKey.size != 0) {
-                        if (this.flagStillAnim) {
-                            this.tweenStill.stop()
-                            this.tweenBackGround.update()
+                    if (!this.uid.gameOver()) {
+                        this.tweenLeftHand.update()
+                        if (!this.animateFlag && this.historyKey.size == 0) {
+                            this.animateFlag = true;
+                            this.startFluctuate()
                         }
-                        else {
-                            if (!this.flagMovAnim && !this.flagEndMov) {
-                                var tweenArgsMov = {
-                                    lfs2x: this.skirtCurRotation.lfs2x,
-                                    lfs2y: this.skirtCurRotation.lfs2y,
-                                    lfs2z: this.skirtCurRotation.lfs2z,
-                                    lms2y: this.skirtCurRotation.lms2y,
-                                    lms2z: this.skirtCurRotation.lms2z,
-                                    lbs2x: this.skirtCurRotation.lbs2x,
-                                    lbs2y: this.skirtCurRotation.lbs2y,
-                                    lbs2z: this.skirtCurRotation.lbs2z,
-                                    rfs2x: this.skirtCurRotation.rfs2x,
-                                    rfs2y: this.skirtCurRotation.rfs2y,
-                                    rfs2z: this.skirtCurRotation.rfs2z,
-                                    rms2y: this.skirtCurRotation.rms2y,
-                                    rms2z: this.skirtCurRotation.rms2z,
-                                    rbs2x: this.skirtCurRotation.rbs2x,
-                                    rbs2y: this.skirtCurRotation.rbs2y,
-                                    rbs2z: this.skirtCurRotation.rbs2z,
+                        else if (!this.animateFlag && this.historyKey.size != 0) {
+                            if (this.flagStillAnim) {
+                                this.tweenStill.stop()
+                                this.tweenBackGround.update()
+                            }
+                            else {
+                                if (!this.flagMovAnim && !this.flagEndMov) {
+                                    var tweenArgsMov = {
+                                        lfs2x: this.skirtCurRotation.lfs2x,
+                                        lfs2y: this.skirtCurRotation.lfs2y,
+                                        lfs2z: this.skirtCurRotation.lfs2z,
+                                        lms2y: this.skirtCurRotation.lms2y,
+                                        lms2z: this.skirtCurRotation.lms2z,
+                                        lbs2x: this.skirtCurRotation.lbs2x,
+                                        lbs2y: this.skirtCurRotation.lbs2y,
+                                        lbs2z: this.skirtCurRotation.lbs2z,
+                                        rfs2x: this.skirtCurRotation.rfs2x,
+                                        rfs2y: this.skirtCurRotation.rfs2y,
+                                        rfs2z: this.skirtCurRotation.rfs2z,
+                                        rms2y: this.skirtCurRotation.rms2y,
+                                        rms2z: this.skirtCurRotation.rms2z,
+                                        rbs2x: this.skirtCurRotation.rbs2x,
+                                        rbs2y: this.skirtCurRotation.rbs2y,
+                                        rbs2z: this.skirtCurRotation.rbs2z,
 
 
-                                    lfs3x: this.skirtCurRotation.lfs3x,
-                                    lfs3y: this.skirtCurRotation.lfs3y,
-                                    lms3x: this.skirtCurRotation.lms3x,
-                                    lbs3x: this.skirtCurRotation.lbs3x,
-                                    lbs3y: this.skirtCurRotation.lbs3y,
-                                    rfs3x: this.skirtCurRotation.rfs3x,
-                                    rfs3y: this.skirtCurRotation.rfs3y,
-                                    rms3x: this.skirtCurRotation.rms3x,
-                                    rbs3x: this.skirtCurRotation.rbs3x,
-                                    rbs3y: this.skirtCurRotation.rbs3y,
+                                        lfs3x: this.skirtCurRotation.lfs3x,
+                                        lfs3y: this.skirtCurRotation.lfs3y,
+                                        lms3x: this.skirtCurRotation.lms3x,
+                                        lbs3x: this.skirtCurRotation.lbs3x,
+                                        lbs3y: this.skirtCurRotation.lbs3y,
+                                        rfs3x: this.skirtCurRotation.rfs3x,
+                                        rfs3y: this.skirtCurRotation.rfs3y,
+                                        rms3x: this.skirtCurRotation.rms3x,
+                                        rbs3x: this.skirtCurRotation.rbs3x,
+                                        rbs3y: this.skirtCurRotation.rbs3y,
 
-                                    lfs4y: this.skirtCurRotation.lfs4y,
-                                    lms4y: this.skirtCurRotation.lms4y,
-                                    lbs4y: this.skirtCurRotation.lbs4y,
-                                    rfs4y: this.skirtCurRotation.rfs4y,
-                                    rms4y: this.skirtCurRotation.rms4y,
-                                    rbs4y: this.skirtCurRotation.rbs4y,
+                                        lfs4y: this.skirtCurRotation.lfs4y,
+                                        lms4y: this.skirtCurRotation.lms4y,
+                                        lbs4y: this.skirtCurRotation.lbs4y,
+                                        rfs4y: this.skirtCurRotation.rfs4y,
+                                        rms4y: this.skirtCurRotation.rms4y,
+                                        rbs4y: this.skirtCurRotation.rbs4y,
 
-                                    lfs5y: this.skirtCurRotation.lfs5y,
-                                    lms5y: this.skirtCurRotation.lms5y,
-                                    lbs5y: this.skirtCurRotation.lbs5y,
-                                    rfs5y: this.skirtCurRotation.rfs5y,
-                                    rms5y: this.skirtCurRotation.rms5y,
-                                    rbs5y: this.skirtCurRotation.rbs5y,
+                                        lfs5y: this.skirtCurRotation.lfs5y,
+                                        lms5y: this.skirtCurRotation.lms5y,
+                                        lbs5y: this.skirtCurRotation.lbs5y,
+                                        rfs5y: this.skirtCurRotation.rfs5y,
+                                        rms5y: this.skirtCurRotation.rms5y,
+                                        rbs5y: this.skirtCurRotation.rbs5y,
 
-                                    lms6y: this.skirtCurRotation.lms6y,
-                                    rms6y: this.skirtCurRotation.rms6y,
+                                        lms6y: this.skirtCurRotation.lms6y,
+                                        rms6y: this.skirtCurRotation.rms6y,
 
-                                    lfb2y: this.beltCurRotation.lfb2y,
-                                    lfb2z: this.beltCurRotation.lfb2z,
-                                    lmb2y: this.beltCurRotation.lmb2y,
-                                    lmb2z: this.beltCurRotation.lmb2z,
-                                    lbb2y: this.beltCurRotation.lbb2y,
-                                    lbb2z: this.beltCurRotation.lbb2z,
-                                    rfb2y: this.beltCurRotation.rfb2y,
-                                    rfb2z: this.beltCurRotation.rfb2z,
-                                    rmb2y: this.beltCurRotation.rmb2y,
-                                    rmb2z: this.beltCurRotation.rmb2z,
-                                    rbb2y: this.beltCurRotation.rbb2y,
-                                    rbb2z: this.beltCurRotation.rbb2z,
+                                        lfb2y: this.beltCurRotation.lfb2y,
+                                        lfb2z: this.beltCurRotation.lfb2z,
+                                        lmb2y: this.beltCurRotation.lmb2y,
+                                        lmb2z: this.beltCurRotation.lmb2z,
+                                        lbb2y: this.beltCurRotation.lbb2y,
+                                        lbb2z: this.beltCurRotation.lbb2z,
+                                        rfb2y: this.beltCurRotation.rfb2y,
+                                        rfb2z: this.beltCurRotation.rfb2z,
+                                        rmb2y: this.beltCurRotation.rmb2y,
+                                        rmb2z: this.beltCurRotation.rmb2z,
+                                        rbb2y: this.beltCurRotation.rbb2y,
+                                        rbb2z: this.beltCurRotation.rbb2z,
 
-                                    lwbx: this.wingCurRotation.lwbx,
-                                    lwbz: this.wingCurRotation.lwbz,
-                                    rwbx: this.wingCurRotation.rwbx,
-                                    rwbz: this.wingCurRotation.rwbz
+                                        lwbx: this.wingCurRotation.lwbx,
+                                        lwbz: this.wingCurRotation.lwbz,
+                                        rwbx: this.wingCurRotation.rwbx,
+                                        rwbz: this.wingCurRotation.rwbz
+                                    }
+                                    var moveX = this.movementDir.f - this.movementDir.b
+                                    var moveZ = this.movementDir.r - this.movementDir.l
+                                    if (moveX == 1 && moveZ == 0) {
+                                        this.flagMovAnim = true
+                                        this.startFront(tweenArgsMov)
+                                    }
+                                    else if (moveX == -1 && moveZ == 0) {
+                                        this.flagMovAnim = true
+                                        this.startBack(tweenArgsMov)
+                                    }
+                                    else if (moveZ == 1 && moveX == 0) {
+                                        this.flagMovAnim = true
+                                        this.startRight(tweenArgsMov)
+                                    }
+                                    else if (moveZ == -1 && moveX == 0) {
+                                        this.flagMovAnim = true
+                                        this.startLeft(tweenArgsMov)
+                                    }
                                 }
-                                var moveX = this.movementDir.f - this.movementDir.b
-                                var moveZ = this.movementDir.r - this.movementDir.l
-                                if (moveX == 1 && moveZ == 0) {
-                                    this.flagMovAnim = true
-                                    this.startFront(tweenArgsMov)
+                                else if (this.flagMovAnim && !this.flagEndMov) {
+                                    var moveX = this.movementDir.f - this.movementDir.b
+                                    var moveZ = this.movementDir.r - this.movementDir.l
+                                    if (moveX == 1 && moveZ == 0) {
+                                        this.tweenFront.update()
+                                    }
+                                    else if (moveX == -1 && moveZ == 0) {
+                                        this.tweenBack.update()
+                                    }
+                                    else if (moveZ == 1 && moveX == 0) {
+                                        this.tweenRight.update()
+                                    }
+                                    else if (moveZ == -1 && moveX == 0) {
+                                        this.tweenLeft.update()
+                                    }
+
                                 }
-                                else if (moveX == -1 && moveZ == 0) {
-                                    this.flagMovAnim = true
-                                    this.startBack(tweenArgsMov)
-                                }
-                                else if (moveZ == 1 && moveX == 0) {
-                                    this.flagMovAnim = true
-                                    this.startRight(tweenArgsMov)
-                                }
-                                else if (moveZ == -1 && moveX == 0) {
-                                    this.flagMovAnim = true
-                                    this.startLeft(tweenArgsMov)
+                                else if (this.flagEndMov) {
+                                    this.tweenEndMov.update()
                                 }
                             }
-                            else if (this.flagMovAnim && !this.flagEndMov) {
-                                var moveX = this.movementDir.f - this.movementDir.b
-                                var moveZ = this.movementDir.r - this.movementDir.l
-                                if (moveX == 1 && moveZ == 0) {
-                                    this.tweenFront.update()
-                                }
-                                else if (moveX == -1 && moveZ == 0) {
-                                    this.tweenBack.update()
-                                }
-                                else if (moveZ == 1 && moveX == 0) {
-                                    this.tweenRight.update()
-                                }
-                                else if (moveZ == -1 && moveX == 0) {
-                                    this.tweenLeft.update()
-                                }
 
+                            this.animateFlagBackGround = true
+                        }
+                        else if (this.animateFlag) {
+                            if (!this.traversePortalFlag || this.flagExitedFromPortal) {
+
+                                this.tweenStill.update()
                             }
-                            else if (this.flagEndMov) {
+                            if (this.animateFlagBackGround && this.flagStillAnim) {
+                                this.tweenBackGround.update()
+                            }
+                            if (this.flagEndMov) {
                                 this.tweenEndMov.update()
                             }
                         }
 
-                        this.animateFlagBackGround = true
-                    }
-                    else if (this.animateFlag) {
-                        if (!this.traversePortalFlag || this.flagExitedFromPortal) {
+                        this.worldPosModel = this.model.position
+                        this.worldPosSword = this.arrayWeapon[0].position
+                        this.worldPosScythe = this.arrayWeapon[1].position
+                        if (this.worldPosModel.distanceTo(this.worldPosSword) != this.worldPosModel.distanceTo(this.worldPosScythe) && !this.weaponPicked) {
+                            if (this.worldPosModel.distanceTo(this.worldPosScythe) <= 12 && this.worldPosModel.distanceTo(this.worldPosSword) > 10) {
+                                var elem = document.getElementById("scythe");
+                                elem.style.visibility = "visible";
+                                var elem = document.getElementById("sword");
+                                elem.style.visibility = "hidden";
+                                if (this.flagActionRight && !this.flagActionAnimation) {
+                                    this.startAction(this.equipped)
+                                    this.flagActionAnimation = true
+                                    this.weaponPicked = true
+                                }
+                                else if (this.flagActionAnimation) {
+                                    this.tweenActionRight.update()
+                                }
+                            }
+                            else if (this.worldPosModel.distanceTo(this.worldPosSword) <= 10 && this.worldPosModel.distanceTo(this.worldPosScythe) > 12) {
+                                var elem = document.getElementById("sword");
+                                elem.style.visibility = "visible";
+                                var elem = document.getElementById("scythe");
+                                elem.style.visibility = "hidden";
+                                if (this.flagActionRight && !this.flagActionAnimation) {
+                                    this.startAction(this.equipped)
+                                    this.flagActionAnimation = true
+                                    this.weaponPicked = true
+                                }
+                                else if (this.flagActionAnimation) {
+                                    this.tweenActionRight.update()
+                                }
+                            }
+                            else {
+                                this.flagActionRight = false
+                                var elem = document.getElementById("scythe");
+                                elem.style.visibility = "hidden";
 
-                            this.tweenStill.update()
-                        }
-                        if (this.animateFlagBackGround && this.flagStillAnim) {
-                            this.tweenBackGround.update()
-                        }
-                        if (this.flagEndMov) {
-                            this.tweenEndMov.update()
-                        }
-                    }
-
-                    this.worldPosModel = this.model.position
-                    this.worldPosSword = this.arrayWeapon[0].position
-                    this.worldPosScythe = this.arrayWeapon[1].position
-                    if (this.worldPosModel.distanceTo(this.worldPosSword) != this.worldPosModel.distanceTo(this.worldPosScythe) && !this.weaponPicked) {
-                        if (this.worldPosModel.distanceTo(this.worldPosScythe) <= 12 && this.worldPosModel.distanceTo(this.worldPosSword) > 10) {
-                            var elem = document.getElementById("scythe");
-                            elem.style.visibility = "visible";
-                            var elem = document.getElementById("sword");
-                            elem.style.visibility = "hidden";
-                            if (this.flagActionRight && !this.flagActionAnimation) {
-                                this.startAction(this.equipped)
-                                this.flagActionAnimation = true
-                                this.weaponPicked = true
-                            }
-                            else if (this.flagActionAnimation) {
-                                this.tweenActionRight.update()
-                            }
-                        }
-                        else if (this.worldPosModel.distanceTo(this.worldPosSword) <= 10 && this.worldPosModel.distanceTo(this.worldPosScythe) > 12) {
-                            var elem = document.getElementById("sword");
-                            elem.style.visibility = "visible";
-                            var elem = document.getElementById("scythe");
-                            elem.style.visibility = "hidden";
-                            if (this.flagActionRight && !this.flagActionAnimation) {
-                                this.startAction(this.equipped)
-                                this.flagActionAnimation = true
-                                this.weaponPicked = true
-                            }
-                            else if (this.flagActionAnimation) {
-                                this.tweenActionRight.update()
+                                var elem = document.getElementById("sword");
+                                elem.style.visibility = "hidden";
                             }
                         }
                         else {
-                            this.flagActionRight = false
+                            if (this.flagActionAnimation) {
+                                this.tweenActionRight.update()
+                            }
                             var elem = document.getElementById("scythe");
                             elem.style.visibility = "hidden";
 
                             var elem = document.getElementById("sword");
                             elem.style.visibility = "hidden";
-                        }
-                    }
-                    else {
-                        if (this.flagActionAnimation) {
-                            this.tweenActionRight.update()
-                        }
-                        var elem = document.getElementById("scythe");
-                        elem.style.visibility = "hidden";
-
-                        var elem = document.getElementById("sword");
-                        elem.style.visibility = "hidden";
-                        if (this.weapon.isFinished()) {
-                            if (!this.equipped) {
-                                this.weaponEquipped = this.weapon.equipWeapon(this)
-                                this.model.add(this.WeaponPivot)
-                                this.WeaponPivot.add(this.weaponEquipped.weapon)
-                                this.weaponPivotCurRotation = {
-                                    wrx: this.WeaponPivot.rotation.x,
-                                    wry: this.WeaponPivot.rotation.y,
-                                    wrz: this.WeaponPivot.rotation.z
-                                }
-                                this.weaponCurRotation = {
-                                    wrx: this.weaponEquipped.weapon.rotation.x,
-                                    wry: this.weaponEquipped.weapon.rotation.y,
-                                    wrz: this.weaponEquipped.weapon.rotation.z
-                                }
-                                if (this.weaponEquipped.type == "scythe") {
-                                    this.weaponEquipped.weapon.position.x = -40.0
-                                    this.weaponEquipped.weapon.position.y = 20.0
-                                    this.weaponEquipped.weapon.position.z = 20.0
+                            if (this.weapon.isFinished()) {
+                                if (!this.equipped) {
+                                    this.weaponEquipped = this.weapon.equipWeapon(this)
+                                    this.model.add(this.WeaponPivot)
+                                    this.WeaponPivot.add(this.weaponEquipped.weapon)
+                                    this.weaponPivotCurRotation = {
+                                        wrx: this.WeaponPivot.rotation.x,
+                                        wry: this.WeaponPivot.rotation.y,
+                                        wrz: this.WeaponPivot.rotation.z
+                                    }
+                                    this.weaponCurRotation = {
+                                        wrx: this.weaponEquipped.weapon.rotation.x,
+                                        wry: this.weaponEquipped.weapon.rotation.y,
+                                        wrz: this.weaponEquipped.weapon.rotation.z
+                                    }
+                                    if (this.weaponEquipped.type == "scythe") {
+                                        this.weaponEquipped.weapon.position.x = -40.0
+                                        this.weaponEquipped.weapon.position.y = 20.0
+                                        this.weaponEquipped.weapon.position.z = 20.0
+                                    }
+                                    else {
+                                        this.weaponEquipped.weapon.position.x = -40.0
+                                        this.weaponEquipped.weapon.position.y = 60.0
+                                        this.weaponEquipped.weapon.position.z = 20.0
+                                    }
+                                    this.equipped = true
                                 }
                                 else {
-                                    this.weaponEquipped.weapon.position.x = -40.0
-                                    this.weaponEquipped.weapon.position.y = 60.0
-                                    this.weaponEquipped.weapon.position.z = 20.0
+                                    this.weaponEquipped.tween.update()
+                                    this.model.add(this.WeaponPivot)
+                                    this.WeaponPivot.add(this.weaponEquipped.weapon)
+                                    if (this.weaponEquipped.type == "scythe") {
+                                        this.weaponEquipped.weapon.position.x = -40.0
+                                        this.weaponEquipped.weapon.position.y = 20.0
+                                        this.weaponEquipped.weapon.position.z = 20.0
+                                    }
+                                    else {
+                                        this.weaponEquipped.weapon.position.x = -40.0
+                                        this.weaponEquipped.weapon.position.y = 60.0
+                                        this.weaponEquipped.weapon.position.z = 20.0
+                                    }
                                 }
-                                this.equipped = true
-                            }
-                            else {
-                                this.weaponEquipped.tween.update()
-                                this.model.add(this.WeaponPivot)
-                                this.WeaponPivot.add(this.weaponEquipped.weapon)
-                                if (this.weaponEquipped.type == "scythe") {
-                                    this.weaponEquipped.weapon.position.x = -40.0
-                                    this.weaponEquipped.weapon.position.y = 20.0
-                                    this.weaponEquipped.weapon.position.z = 20.0
+                                if (!this.flagActionAnimation) {
+                                    this.box = null
                                 }
-                                else {
-                                    this.weaponEquipped.weapon.position.x = -40.0
-                                    this.weaponEquipped.weapon.position.y = 60.0
-                                    this.weaponEquipped.weapon.position.z = 20.0
+                                if (this.flagActionRight && !this.flagActionAnimation && this.attackEnabled) {
+                                    this.startAction(this.equipped)
+                                    this.flagActionAnimation = true
+
+                                    this.box = new THREE.Box3().setFromObject(this.weaponEquipped.weapon)
+
+
                                 }
-                            }
-                            if (!this.flagActionAnimation) {
-                                this.box = null
-                            }
-                            if (this.flagActionRight && !this.flagActionAnimation && this.attackEnabled) {
-                                this.startAction(this.equipped)
-                                this.flagActionAnimation = true
+                                else if (this.flagActionAnimation && this.attackEnabled) {
+                                    this.tweenActionRight.update()
+                                    this.box.setFromObject(this.weaponEquipped.weapon)
 
-                                this.box = new THREE.Box3().setFromObject(this.weaponEquipped.weapon)
-
-
-                            }
-                            else if (this.flagActionAnimation && this.attackEnabled) {
-                                this.tweenActionRight.update()
-                                this.box.setFromObject(this.weaponEquipped.weapon)
-
-                            }
-                            if (this.attackEnabled && this.portal.portalEnabled() && !this.flagExitedFromPortal) {
-                                this.worldPosPortal = this.portal.getPortal().position
-                                if (this.worldPosModel.distanceTo(this.worldPosPortal) <= 10) {
-                                    document.removeEventListener("mousedown", this.onMouseDown)
-                                    document.removeEventListener("mousemove", this.onMouseMove)
-                                    document.removeEventListener("mouseup", this.onMouseUp)
-                                    document.removeEventListener("keydown", this.onDocumentKeyDown)
-                                    document.removeEventListener("keyup", this.onDocumentKeyUp)
-                                    this.movementDir.f = 0
-                                    this.historyKey.delete("ArrowUp")
-                                    this.movementDir.b = 0
-                                    this.historyKey.delete("ArrowDown")
-                                    this.movementDir.l = 0
-                                    this.historyKey.delete("ArrowLeft")
-                                    this.movementDir.r = 0
-                                    this.historyKey.delete("ArrowRight")
-                                    this.flagMovAnim = false
-                                    this.historyKey.delete("RightClick")
-                                    if (this.tweenFront) {
-                                        this.tweenFront.stop()
-                                    }
-                                    if (this.tweenBack) {
-                                        this.tweenBack.stop()
-                                    }
-                                    if (this.tweenLeft) {
-                                        this.tweenLeft.stop()
-                                    }
-                                    if (this.tweenRight) {
-                                        this.tweenRight.stop()
-                                    }
-
-                                    if (!this.traversePortalFlag) {
-                                        this.handlerAmmo.removeRigidBodyFromSet(this.model)
-                                        var tweenTraversePortalArgs = {
-                                            lookatx: this.lookatx,
-                                            lookaty: this.lookaty,
-                                            lookatz: this.lookatz,
-                                            camposx: this.camposx,
-                                            camposy: this.camposy,
-                                            camposz: this.camposz,
-                                            roty: this.model.rotation.y,
-                                            mposx: this.model.position.x,
-                                            mposz: this.model.position.z
+                                }
+                                if (this.attackEnabled && this.portal.portalEnabled() && !this.flagExitedFromPortal) {
+                                    this.worldPosPortal = this.portal.getPortal().position
+                                    if (this.worldPosModel.distanceTo(this.worldPosPortal) <= 10) {
+                                        document.removeEventListener("mousedown", this.onMouseDown)
+                                        document.removeEventListener("mousemove", this.onMouseMove)
+                                        document.removeEventListener("mouseup", this.onMouseUp)
+                                        document.removeEventListener("keydown", this.onDocumentKeyDown)
+                                        document.removeEventListener("keyup", this.onDocumentKeyUp)
+                                        this.movementDir.f = 0
+                                        this.historyKey.delete("ArrowUp")
+                                        this.movementDir.b = 0
+                                        this.historyKey.delete("ArrowDown")
+                                        this.movementDir.l = 0
+                                        this.historyKey.delete("ArrowLeft")
+                                        this.movementDir.r = 0
+                                        this.historyKey.delete("ArrowRight")
+                                        this.flagMovAnim = false
+                                        this.historyKey.delete("RightClick")
+                                        if (this.tweenFront) {
+                                            this.tweenFront.stop()
                                         }
-                                        var tweenExitPortalArgs = {
-                                            mposx: this.model.position.x,
-                                            mposz: this.model.position.z
+                                        if (this.tweenBack) {
+                                            this.tweenBack.stop()
                                         }
-                                        var perfectRot = 4.8
-                                        if(this.model.rotation.y <= 0){
-                                            perfectRot = -1.5
+                                        if (this.tweenLeft) {
+                                            this.tweenLeft.stop()
                                         }
-                                        this.tweenTraversePortal = new TWEEN.Tween(tweenTraversePortalArgs).to({
-                                            lookatx: -0.5037284900196041,
-                                            lookaty: this.lookaty,
-                                            lookatz: 0.38361296414383866,
-                                            camposx: -40,
-                                            camposy: 160,
-                                            camposz: 348,
-                                            roty: perfectRot,
-                                            mposx: 100,
-                                            mposz: 0,
-                                        }, 2000).onUpdate(() => {
-                                            this.model.remove(this.camera)
-                                            this.model.rotation.y = tweenTraversePortalArgs.roty
-                                            this.model.position.x = tweenTraversePortalArgs.mposx
-                                            this.model.position.z = tweenTraversePortalArgs.mposz
-                                            this.camera.position.x = tweenTraversePortalArgs.camposx
-                                            this.camera.position.y = tweenTraversePortalArgs.camposy
-                                            this.camera.position.z = tweenTraversePortalArgs.camposz
-                                            this.camera.lookAt(tweenTraversePortalArgs.lookatx, tweenTraversePortalArgs.lookaty, tweenTraversePortalArgs.lookatz)
-                                            this.model.add(this.camera)
-                                        }).onComplete(() => {
-                                            this.portal.stopScale()
-                                            this.flagTraversed = true
-                                            var tweenZoomInArgs = {
-                                                x: 1
+                                        if (this.tweenRight) {
+                                            this.tweenRight.stop()
+                                        }
+
+                                        if (!this.traversePortalFlag) {
+                                            this.handlerAmmo.removeRigidBodyFromSet(this.model)
+                                            var tweenTraversePortalArgs = {
+                                                lookatx: this.lookatx,
+                                                lookaty: this.lookaty,
+                                                lookatz: this.lookatz,
+                                                camposx: this.camposx,
+                                                camposy: this.camposy,
+                                                camposz: this.camposz,
+                                                roty: this.model.rotation.y,
+                                                mposx: this.model.position.x,
+                                                mposz: this.model.position.z
                                             }
-                                            this.tweenZoomIn = new TWEEN.Tween(tweenZoomInArgs).to({
-                                                x: 10
+                                            var tweenExitPortalArgs = {
+                                                mposx: this.model.position.x,
+                                                mposz: this.model.position.z
+                                            }
+                                            var perfectRot = 4.8
+                                            if (this.model.rotation.y <= 0) {
+                                                perfectRot = -1.5
+                                            }
+                                            this.tweenTraversePortal = new TWEEN.Tween(tweenTraversePortalArgs).to({
+                                                lookatx: -0.5037284900196041,
+                                                lookaty: this.lookaty,
+                                                lookatz: 0.38361296414383866,
+                                                camposx: -40,
+                                                camposy: 160,
+                                                camposz: 348,
+                                                roty: perfectRot,
+                                                mposx: 100,
+                                                mposz: 0,
                                             }, 2000).onUpdate(() => {
-                                                this.camera.zoom = tweenZoomInArgs.x
-                                                this.camera.updateProjectionMatrix()
+                                                this.model.remove(this.camera)
+                                                this.model.rotation.y = tweenTraversePortalArgs.roty
+                                                this.model.position.x = tweenTraversePortalArgs.mposx
+                                                this.model.position.z = tweenTraversePortalArgs.mposz
+                                                this.camera.position.x = tweenTraversePortalArgs.camposx
+                                                this.camera.position.y = tweenTraversePortalArgs.camposy
+                                                this.camera.position.z = tweenTraversePortalArgs.camposz
+                                                this.camera.lookAt(tweenTraversePortalArgs.lookatx, tweenTraversePortalArgs.lookaty, tweenTraversePortalArgs.lookatz)
+                                                this.model.add(this.camera)
                                             }).onComplete(() => {
-                                                this.tutorialRoom.removeRoom()
-                                                this.uid.showBars()
-                                                this.zoomedIn = true
-                                                var tweenZoomOutArgs = {
-                                                    x: 10
-                                                }
-                                                this.tweenZoomOut = new TWEEN.Tween(tweenZoomOutArgs).to({
+                                                this.portal.stopScale()
+                                                this.flagTraversed = true
+                                                var tweenZoomInArgs = {
                                                     x: 1
+                                                }
+                                                this.tweenZoomIn = new TWEEN.Tween(tweenZoomInArgs).to({
+                                                    x: 10
                                                 }, 2000).onUpdate(() => {
-                                                    this.camera.zoom = tweenZoomOutArgs.x
+                                                    this.camera.zoom = tweenZoomInArgs.x
                                                     this.camera.updateProjectionMatrix()
                                                 }).onComplete(() => {
-                                                    this.flagExitFromPortal = true
-                                                    var tweenExitPortalTraversedArgs = {
-                                                        mposx: this.model.position.x,
-                                                        mposz: this.model.position.z
+                                                    this.tutorialRoom.removeRoom()
+                                                    this.uid.showBars()
+                                                    this.zoomedIn = true
+                                                    var tweenZoomOutArgs = {
+                                                        x: 10
                                                     }
-                                                    this.tweenExitPortal = new TWEEN.Tween(tweenExitPortalTraversedArgs).to({
-                                                        mposx: tweenExitPortalArgs.mposx,
-                                                        mposz: tweenExitPortalArgs.mposz
+                                                    this.tweenZoomOut = new TWEEN.Tween(tweenZoomOutArgs).to({
+                                                        x: 1
                                                     }, 2000).onUpdate(() => {
-                                                        this.model.position.x = tweenExitPortalTraversedArgs.mposx
-                                                        this.model.position.z = tweenExitPortalTraversedArgs.mposz
+                                                        this.camera.zoom = tweenZoomOutArgs.x
+                                                        this.camera.updateProjectionMatrix()
                                                     }).onComplete(() => {
-                                                        var shadowLight = new THREE.DirectionalLight(0xe6e6e6, 0.4)
-                                                        shadowLight.position.set(1, 100, 1)
-                                                        shadowLight.castShadow = true;
-                                                        const dim = 10
-                                                        shadowLight.shadow.camera.top = dim;
-                                                        shadowLight.shadow.camera.bottom = - dim;
-                                                        shadowLight.shadow.camera.left = - dim;
-                                                        shadowLight.shadow.camera.right = dim;
-                                                        shadowLight.shadow.camera.near = 2;
-                                                        shadowLight.shadow.camera.far = 1000;
-                                                        shadowLight.shadow.mapSize.x = 2048;
-                                                        shadowLight.shadow.mapSize.y = 2048;
-                                                        shadowLight.target = this.model
-                                                        this.scene.add(shadowLight)
-
-
-                                                        this.flagAdjustCamAndPortal = true
-                                                        this.portal.removePortal()
-                                                        var tweenCamBackAndPortalDisappearArgs = {
-                                                            lookatx: -0.5037284900196041,
-                                                            lookaty: this.lookaty,
-                                                            lookatz: 0.38361296414383866,
-                                                            camposx: -40,
-                                                            camposy: 160,
-                                                            camposz: 348,
+                                                        this.flagExitFromPortal = true
+                                                        var tweenExitPortalTraversedArgs = {
+                                                            mposx: this.model.position.x,
+                                                            mposz: this.model.position.z
                                                         }
-                                                        this.tweenCamBackAndPortalDisappear = new TWEEN.Tween(tweenCamBackAndPortalDisappearArgs).to({
-                                                            lookatx: this.lookatx,
-                                                            lookaty: this.lookaty,
-                                                            lookatz: this.lookatz,
-                                                            camposx: this.camposx,
-                                                            camposy: this.camposy,
-                                                            camposz: this.camposz
+                                                        this.tweenExitPortal = new TWEEN.Tween(tweenExitPortalTraversedArgs).to({
+                                                            mposx: tweenExitPortalArgs.mposx,
+                                                            mposz: tweenExitPortalArgs.mposz
                                                         }, 2000).onUpdate(() => {
-                                                            this.model.remove(this.camera)
-                                                            this.camera.position.x = tweenCamBackAndPortalDisappearArgs.camposx
-                                                            this.camera.position.y = tweenCamBackAndPortalDisappearArgs.camposy
-                                                            this.camera.position.z = tweenCamBackAndPortalDisappearArgs.camposz
-                                                            this.camera.lookAt(tweenCamBackAndPortalDisappearArgs.lookatx, tweenCamBackAndPortalDisappearArgs.lookaty, tweenCamBackAndPortalDisappearArgs.lookatz)
-                                                            this.model.add(this.camera)
+                                                            this.model.position.x = tweenExitPortalTraversedArgs.mposx
+                                                            this.model.position.z = tweenExitPortalTraversedArgs.mposz
                                                         }).onComplete(() => {
-                                                            this.handlerAmmo.addRigidBodyToSet(this.model)
-                                                            document.addEventListener("mousedown", this.onMouseDown)
-                                                            document.addEventListener("mousemove", this.onMouseMove)
-                                                            document.addEventListener("mouseup", this.onMouseUp)
-                                                            document.addEventListener("keydown", this.onDocumentKeyDown)
-                                                            document.addEventListener("keyup", this.onDocumentKeyUp)
-                                                            this.flagExitedFromPortal = true
+                                                            var shadowLight = new THREE.DirectionalLight(0xe6e6e6, 0.4)
+                                                            shadowLight.position.set(1, 100, 1)
+                                                            shadowLight.castShadow = true;
+                                                            const dim = 10
+                                                            shadowLight.shadow.camera.top = dim;
+                                                            shadowLight.shadow.camera.bottom = - dim;
+                                                            shadowLight.shadow.camera.left = - dim;
+                                                            shadowLight.shadow.camera.right = dim;
+                                                            shadowLight.shadow.camera.near = 2;
+                                                            shadowLight.shadow.camera.far = 1000;
+                                                            shadowLight.shadow.mapSize.x = 2048;
+                                                            shadowLight.shadow.mapSize.y = 2048;
+                                                            shadowLight.target = this.model
+                                                            this.scene.add(shadowLight)
+
+
+                                                            this.flagAdjustCamAndPortal = true
+                                                            this.portal.removePortal()
+                                                            var tweenCamBackAndPortalDisappearArgs = {
+                                                                lookatx: -0.5037284900196041,
+                                                                lookaty: this.lookaty,
+                                                                lookatz: 0.38361296414383866,
+                                                                camposx: -40,
+                                                                camposy: 160,
+                                                                camposz: 348,
+                                                            }
+                                                            this.tweenCamBackAndPortalDisappear = new TWEEN.Tween(tweenCamBackAndPortalDisappearArgs).to({
+                                                                lookatx: this.lookatx,
+                                                                lookaty: this.lookaty,
+                                                                lookatz: this.lookatz,
+                                                                camposx: this.camposx,
+                                                                camposy: this.camposy,
+                                                                camposz: this.camposz
+                                                            }, 2000).onUpdate(() => {
+                                                                this.model.remove(this.camera)
+                                                                this.camera.position.x = tweenCamBackAndPortalDisappearArgs.camposx
+                                                                this.camera.position.y = tweenCamBackAndPortalDisappearArgs.camposy
+                                                                this.camera.position.z = tweenCamBackAndPortalDisappearArgs.camposz
+                                                                this.camera.lookAt(tweenCamBackAndPortalDisappearArgs.lookatx, tweenCamBackAndPortalDisappearArgs.lookaty, tweenCamBackAndPortalDisappearArgs.lookatz)
+                                                                this.model.add(this.camera)
+                                                            }).onComplete(() => {
+                                                                this.handlerAmmo.addRigidBodyToSet(this.model)
+                                                                document.addEventListener("mousedown", this.onMouseDown)
+                                                                document.addEventListener("mousemove", this.onMouseMove)
+                                                                document.addEventListener("mouseup", this.onMouseUp)
+                                                                document.addEventListener("keydown", this.onDocumentKeyDown)
+                                                                document.addEventListener("keyup", this.onDocumentKeyUp)
+                                                                this.flagExitedFromPortal = true
+                                                            }).start()
                                                         }).start()
                                                     }).start()
                                                 }).start()
                                             }).start()
-                                        }).start()
 
-                                        this.traversePortalFlag = true
+                                            this.traversePortalFlag = true
+                                        }
                                     }
-                                }
-                                if (this.traversePortalFlag) {
-                                    this.tweenEndMov.update()
-                                    if (!this.flagAdjustCamAndPortal) {
-                                        if (!this.flagExitFromPortal) {
-                                            if (!this.zoomedIn) {
-                                                if (!this.flagTraversed) {
-                                                    this.tweenTraversePortal.update()
+                                    if (this.traversePortalFlag) {
+                                        this.tweenEndMov.update()
+                                        if (!this.flagAdjustCamAndPortal) {
+                                            if (!this.flagExitFromPortal) {
+                                                if (!this.zoomedIn) {
+                                                    if (!this.flagTraversed) {
+                                                        this.tweenTraversePortal.update()
+                                                    }
+                                                    else {
+                                                        this.tweenTraversePortal.stop()
+                                                        this.tweenZoomIn.update()
+                                                    }
                                                 }
                                                 else {
-                                                    this.tweenTraversePortal.stop()
-                                                    this.tweenZoomIn.update()
+                                                    this.tweenZoomOut.update()
                                                 }
                                             }
                                             else {
-                                                this.tweenZoomOut.update()
+                                                this.tweenExitPortal.update()
                                             }
                                         }
                                         else {
-                                            this.tweenExitPortal.update()
+                                            this.tweenCamBackAndPortalDisappear.update()
                                         }
-                                    }
-                                    else {
-                                        this.tweenCamBackAndPortalDisappear.update()
                                     }
                                 }
                             }
+                        }
+                    }
+                    else {
+                        this.tweenLeftHand.stop()
+                        this.tweenStill.stop()
+                        document.removeEventListener("mousedown", this.onMouseDown)
+                        document.removeEventListener("mousemove", this.onMouseMove)
+                        document.removeEventListener("mouseup", this.onMouseUp)
+                        document.removeEventListener("keydown", this.onDocumentKeyDown)
+                        document.removeEventListener("keyup", this.onDocumentKeyUp)
+                        if(!this.flagDisappear){
+                            this.flagDisappear = true
+                            this.tweenDeath = new TWEEN.Tween(this.model.scale).to({
+                                x: 0,
+                                y: 0,
+                                z: 0
+                            },4000).start()
+                        }
+                        else{
+                            this.tweenDeath.update()
                         }
                     }
                 }
@@ -1176,9 +1200,9 @@ class Character {
 
     onMouseMove(event) {
         if (this.ready && this.flagMouseDown) {
-            const theta = Math.PI / 2 * 0.009 * (event.clientX - this.lastX)%6.28319
+            const theta = Math.PI / 2 * 0.009 * (event.clientX - this.lastX) % 6.28319
             this.lastX = event.clientX
-            this.model.rotation.y = (this.model.rotation.y%6.28319) + theta
+            this.model.rotation.y = (this.model.rotation.y % 6.28319) + theta
 
         }
     }
@@ -1227,7 +1251,7 @@ class Character {
 
 
     moveCharacter(startGame) {
-        if (startGame) {
+        if (startGame && !this.uid.gameOver()) {
             var moveX = this.movementDir.f - this.movementDir.b
             var moveZ = this.movementDir.r - this.movementDir.l
 
@@ -1249,7 +1273,7 @@ class Character {
             }
 
 
-            
+
             this.model.getWorldDirection(this.dir)
             let velocity = null
 
@@ -2444,7 +2468,7 @@ class Character {
             lslx: this.LeftSleeve.rotation.x,
             lslz: this.LeftSleeve.rotation.z,
 
-         
+
             lhm1y: this.LeftHandMiddle1.rotation.y,
             lhm2y: this.LeftHandMiddle2.rotation.y,
             lhm3y: this.LeftHandMiddle3.rotation.y,
