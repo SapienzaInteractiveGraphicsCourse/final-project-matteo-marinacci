@@ -3,9 +3,7 @@ class Uid {
     camera = null
     plane = null
     fontMenu = null
-    fontNumber = null
     readyFontMenu = false
-    readyFontNumber = false
     flagSetOnlyOnce = true
 
     startGeometry = null
@@ -68,8 +66,10 @@ class Uid {
 
     isHitted = false
     hasHitted = false
+    recover = false
+    increaseBar = false
 
-    constructor(scene, camera, fontMenu, fontNumber, left, right, arrows) {
+    constructor(scene, camera, fontMenu, left, right, arrows) {
         this.scene = scene
         this.camera = camera
 
@@ -78,12 +78,6 @@ class Uid {
             this.readyFontMenu = true
         })
         this.fontMenu = fontMenu
-
-        Promise.resolve(fontNumber).then((data) => {
-            this.fontNumber = data
-            this.readyFontNumber = true
-        })
-        this.fontNumber = fontNumber
 
         Promise.resolve(left).then((data) => {
             this.left = data
@@ -107,7 +101,7 @@ class Uid {
 
 
     update(loadMenu) {
-        if (this.readyFontMenu && this.readyFontNumber && this.readyLeft && this.readyRight && this.readyArrows) {
+        if (this.readyFontMenu && this.readyLeft && this.readyRight && this.readyArrows) {
             if (this.flagSetOnlyOnce && loadMenu && !this.flagStartGame) {
                 this.flagSetOnlyOnce = false
 
@@ -250,7 +244,6 @@ class Uid {
                     this.hpMesh = new THREE.Mesh(this.hpGeometry, this.hpMaterial)
                     this.hpMesh.scale.set(this.hpX, 10)
                     this.hpMesh.position.set((-window.innerWidth / 2) + (this.hpX / 2), (window.innerHeight / 2) - 5, 0)
-                    console.log(this.hpMesh.scale)
                     this.scene.add(this.hpMesh)
 
                     this.hpLostMaterial = new THREE.MeshBasicMaterial({
@@ -284,6 +277,20 @@ class Uid {
                         this.isHitted = false
                         this.hpMesh.scale.set(this.hpX, 10)
                         this.hpMesh.position.set((-window.innerWidth / 2) + (this.hpX / 2), (window.innerHeight / 2) - 5, 0)
+                    }
+
+                    if(this.recover){
+                        this.recover = false
+                        this.hpMesh.scale.set(this.hpX, 10)
+                        this.hpMesh.position.set((-window.innerWidth / 2) + (this.hpX / 2), (window.innerHeight / 2) - 5, 0)
+                    }
+
+                    if(this.increaseBar){
+                        this.increaseBar = false
+                        this.hpMesh.scale.set(this.hpX, 10)
+                        this.hpMesh.position.set((-window.innerWidth / 2) + (this.hpX / 2), (window.innerHeight / 2) - 5, 0)
+                        this.hpLostMesh.scale.set(this.hpLostX, 8)
+                    this.hpLostMesh.position.set((-window.innerWidth / 2) + (this.hpLostX / 2), (window.innerHeight / 2) - 5, -1)
                     }
                 }
             }
@@ -322,6 +329,9 @@ class Uid {
     hitted() {
         this.isHitted = true
         this.hpX -= 10
+        if(this.hpX <= 0){
+            this.hpX = 0
+        }
     }
 
     hit() {
@@ -329,5 +339,24 @@ class Uid {
         this.killCountText += 1
         var elem = document.getElementById("killCount");
         elem.innerText = this.killCountText.toString();
+        if(this.killCountText%30==0){
+            this.increaseBar = true
+            this.hpLostX += 3
+            this.hpX = this.hpLostX
+        }
+        else{
+            if(this.killCountText%15 == 0){
+                this.recover = true
+                var temp = Math.floor(this.hpLostX/20)
+                if((this.hpX + temp )>= this.hpLostX){
+                    this.hpX = this.hpLostX
+                }
+                else{
+                    this.hpX += temp*10
+                }
+            }
+        }
+        
+        
     }
 }

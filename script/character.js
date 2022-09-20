@@ -241,6 +241,7 @@ class Character {
 
     box = null
     uid = null
+    dir = new THREE.Vector3
 
 
     constructor(ammo, handlerAmmo, scene, camera, model, xScale, yScale, zScale, xPos, yPos, zPos, tutorialRoom, weapon, portal, uid) {
@@ -599,6 +600,7 @@ class Character {
         if (this.ready && roomReady && weaponReady) {
             if (this.flagSetOnlyOnce) {
                 this.setRoomReady()
+                this.scene.fog = new THREE.Fog(0xF5F5F5, 1, 1000);
                 this.flagSetOnlyOnce = false
 
                 this.model.traverse(function (object) {
@@ -662,7 +664,6 @@ class Character {
 
                     }
                     this.tweenLeftHand.update()
-
                     if (!this.animateFlag && this.historyKey.size == 0) {
                         this.animateFlag = true;
                         this.startFluctuate()
@@ -951,6 +952,10 @@ class Character {
                                             mposx: this.model.position.x,
                                             mposz: this.model.position.z
                                         }
+                                        var perfectRot = 4.8
+                                        if(this.model.rotation.y <= 0){
+                                            perfectRot = -1.5
+                                        }
                                         this.tweenTraversePortal = new TWEEN.Tween(tweenTraversePortalArgs).to({
                                             lookatx: -0.5037284900196041,
                                             lookaty: this.lookaty,
@@ -958,7 +963,7 @@ class Character {
                                             camposx: -40,
                                             camposy: 160,
                                             camposz: 348,
-                                            roty: 4.8,
+                                            roty: perfectRot,
                                             mposx: 100,
                                             mposz: 0,
                                         }, 2000).onUpdate(() => {
@@ -984,7 +989,6 @@ class Character {
                                                 this.camera.updateProjectionMatrix()
                                             }).onComplete(() => {
                                                 this.tutorialRoom.removeRoom()
-                                                this.scene.fog = new THREE.Fog(0xFFFFFF, 1, 1000);
                                                 this.uid.showBars()
                                                 this.zoomedIn = true
                                                 var tweenZoomOutArgs = {
@@ -1172,9 +1176,9 @@ class Character {
 
     onMouseMove(event) {
         if (this.ready && this.flagMouseDown) {
-            const theta = Math.PI / 2 * 0.009 * (event.clientX - this.lastX)
+            const theta = Math.PI / 2 * 0.009 * (event.clientX - this.lastX)%6.28319
             this.lastX = event.clientX
-            this.model.rotation.y += theta
+            this.model.rotation.y = (this.model.rotation.y%6.28319) + theta
 
         }
     }
@@ -1245,12 +1249,12 @@ class Character {
             }
 
 
-            var temp = new THREE.Vector3
-            this.model.getWorldDirection(temp)
+            
+            this.model.getWorldDirection(this.dir)
             let velocity = null
 
             if (moveZ == 0) {
-                velocity = new this.ammo.btVector3(temp.x, 0, temp.z)
+                velocity = new this.ammo.btVector3(this.dir.x, 0, this.dir.z)
                 if (moveX == -1) {
                     velocity.op_mul(-10);
                 }
@@ -1260,7 +1264,7 @@ class Character {
             }
             else {
                 var temp1 = new THREE.Vector3(0, 1, 0)
-                temp1.cross(temp)
+                temp1.cross(this.dir)
                 if (moveZ == -1) {
                     velocity = new this.ammo.btVector3(temp1.x, 0, temp1.z)
                     velocity.op_mul(10);

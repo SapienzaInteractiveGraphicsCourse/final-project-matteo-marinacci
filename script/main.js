@@ -5,7 +5,7 @@ window.onload = function () {
 function main() {
   let world, trans = null, handlerAmmo;
   let scene, sceneUid, camera_array, camera_array_uid, camera, cameraUid, renderer, clock
-  let uid, font_menu, font_number, leftImage, rightImage, arrowImage
+  let uid, font_menu, leftImage, rightImage, arrowImage
 
   let character_model, character
   let tutorial_room_model, tutorial_room, weapon
@@ -13,6 +13,9 @@ function main() {
   let outside
   let rock_model, sword_model, wall_model
   let enemy_model, enemy
+
+  let loadFinished = false
+  let errorFlag = false
 
   Ammo().then(ammo => start(ammo))
 
@@ -83,34 +86,62 @@ function main() {
 
 
   function models(ammo, handlerAmmo) {
-    font_menu = Utils.loadFontPromise(sceneUid, "fonts/gypsycurse.json")
-    font_number = Utils.loadFontPromise(sceneUid, "fonts/optimer.json")
-    leftImage = Utils.loadImagePromise(sceneUid, "left_click.png")
-    rightImage = Utils.loadImagePromise(sceneUid, "right_click.png")
-    arrowImage = Utils.loadImagePromise(sceneUid, "arrows.png")
+    const manager = new THREE.LoadingManager()
 
-    uid = new Uid(sceneUid, cameraUid, font_menu, font_number, leftImage, rightImage, arrowImage)
+    manager.onLoad = function () {
+      console.log('Loading complete!');
+      loadFinished = true
+      var loadingBar = document.getElementById("loadingBar").style
+      loadingBar.visibility = "hidden"
+      var body = document.body.style
+      body.background = "whitesmoke"
+    };
 
-    tutorial_room_model = Utils.loadModel(scene, "models/tutorial_room/scene.gltf")
+
+    manager.onProgress = function (url, itemsLoaded, itemsTotal) {
+      var progressBar = document.getElementById("progressBar")
+      progressBar.value = itemsLoaded / itemsTotal * 100
+      var loaded = document.getElementById("loaded")
+      loaded.textContent = itemsLoaded
+      var total = document.getElementById("total")
+      total.textContent = itemsTotal
+    };
+
+
+
+    manager.onError = function (url) {
+
+      console.log('There was an error loading ' + url + " Please Refresh!");
+      errorFlag = true
+    };
+
+    font_menu = Utils.loadFontPromise(sceneUid, manager, "fonts/gypsycurse.json")
+    leftImage = Utils.loadImagePromise(sceneUid, manager, "left_click.png")
+    rightImage = Utils.loadImagePromise(sceneUid, manager, "right_click.png")
+    arrowImage = Utils.loadImagePromise(sceneUid, manager, "arrows.png")
+
+    uid = new Uid(sceneUid, cameraUid, font_menu, leftImage, rightImage, arrowImage)
+
+    tutorial_room_model = Utils.loadModel(scene, manager, "models/tutorial_room/scene.gltf")
     tutorial_room = new TutorialRoom(ammo, handlerAmmo, scene, camera, tutorial_room_model, 3, 3, 3, 0, 0, 0)
 
-    portal_model = Utils.loadModel(scene, "models/portal/scene.gltf")
+    portal_model = Utils.loadModel(scene, manager, "models/portal/scene.gltf")
     portal = new Portal(scene, camera, portal_model, 0, 0, 0, 0, 0, 0, tutorial_room)
 
-    weapon_scythe_model = Utils.loadModel(scene, "models/scythe/scene.gltf")
-    weapon_sword_model = Utils.loadModel(scene, "models/sword/scene.gltf")
+    weapon_scythe_model = Utils.loadModel(scene, manager, "models/scythe/scene.gltf")
+    weapon_sword_model = Utils.loadModel(scene, manager, "models/sword/scene.gltf")
     weapon = new Weapon(ammo, handlerAmmo, scene, camera, weapon_scythe_model, 0.1, 0.1, 0.1, 0, 0, 0, weapon_sword_model, 0.2, 0.2, 0.2, 0, 0, 0, tutorial_room, portal)
 
-    character_model = Utils.loadModel(scene, "models/grim_reaper/scene.gltf")
+    character_model = Utils.loadModel(scene, manager, "models/grim_reaper/scene.gltf")
     character = new Character(ammo, handlerAmmo, scene, camera, character_model, 0.1, 0.1, 0.1, -6, 5, 0, tutorial_room, weapon, portal, uid)
 
-    wall_model = Utils.loadModel(scene, "models/granit_rock_wall/scene.gltf")
-    rock_model = Utils.loadModel(scene, "models/rock/scene.gltf")
-    sword_model = Utils.loadModel(scene, "models/broken_sword/scene.gltf")
+    wall_model = Utils.loadModel(scene, manager, "models/granit_rock_wall/scene.gltf")
+    rock_model = Utils.loadModel(scene, manager, "models/rock/scene.gltf")
+    sword_model = Utils.loadModel(scene, manager, "models/broken_sword/scene.gltf")
 
     outside = new Outstide(ammo, handlerAmmo, scene, camera, 0, -10, 0, 500, 1, 500, wall_model, rock_model, sword_model, tutorial_room)
 
-    enemy_model = Utils.loadModel(scene, "models/eye/scene.gltf")
+    enemy_model = Utils.loadModel(scene, manager, "models/eye/scene.gltf")
     enemy = new Enemy(ammo, handlerAmmo, scene, enemy_model, 0.008, 0.008, 0.008, 10, 0, 0, character, outside, uid)
   }
 
@@ -120,21 +151,25 @@ function main() {
 
 
   function animate() {
+    if (loadFinished && !errorFlag) {
+      uid.update(character.loadMenu())
 
-    uid.update(character.loadMenu())
+      enemy.update()
 
-    enemy.update()
+      character.moveCharacter(uid.startGame())
+      handlerAmmo.update(clock.getDelta())
+      tutorial_room.update()
+      weapon.update(tutorial_room.isReady())
+      character.update(tutorial_room.isReady(), weapon.isReady(), uid.startGame())
+      portal.update(weapon.gateIsOpen())
+      outside.update()
 
-    character.moveCharacter(uid.startGame())
-    handlerAmmo.update(clock.getDelta())
-    tutorial_room.update()
-    weapon.update(tutorial_room.isReady())
-    character.update(tutorial_room.isReady(), weapon.isReady(), uid.startGame())
-    portal.update(weapon.gateIsOpen())
-    outside.update()
+      renderer.render(scene, camera);
+      renderer.render(sceneUid, cameraUid)
+    }
 
-    renderer.render(scene, camera);
-    renderer.render(sceneUid, cameraUid)
+
+
     requestAnimationFrame(animate);
   }
 

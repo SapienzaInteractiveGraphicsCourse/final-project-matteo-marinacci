@@ -1,7 +1,7 @@
 class Utils {
-    static loadModel(scene, model_gltf) {
+    static loadModel(scene,manager, model_gltf) {
         const myPromise = new Promise((resolve, reject) => {
-            const gltfLoader = new THREE.GLTFLoader()
+            const gltfLoader = new THREE.GLTFLoader(manager)
             gltfLoader.load(
                 model_gltf,
                 function (gltf) {
@@ -20,9 +20,9 @@ class Utils {
     }
 
 
-    static loadFontPromise(scene, inputFont) {
+    static loadFontPromise(scene, manager ,inputFont) {
         const myPromise = new Promise((resolve, reject) => {
-            const fontLoader = new FontLoader()
+            const fontLoader = new FontLoader(manager)
             fontLoader.load(inputFont,
                 function (font) {
                     resolve(font)
@@ -38,9 +38,9 @@ class Utils {
         return myPromise
     }
 
-    static loadImagePromise(scene, inputImage) {
+    static loadImagePromise(scene, manager,inputImage) {
         const myPromise = new Promise((resolve, reject) => {
-            const imgLoader = new THREE.TextureLoader()
+            const imgLoader = new THREE.TextureLoader(manager)
             imgLoader.load(inputImage,
                 function (image) {
                     resolve(image)

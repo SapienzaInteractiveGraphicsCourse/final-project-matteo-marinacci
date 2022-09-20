@@ -33,6 +33,7 @@
   <style>
     body {
       margin: 0;
+      background-color: darkslategrey;
     }
   </style>
   <div id="sword">
@@ -42,6 +43,14 @@
     <img src="right_click.png" draggable="false" id="img"> Pick Scythe
   </div>
   <div id="killCount">0</div>
+  <div id="loadingBar">
+    <div id="progressBarDiv">
+      <progress id="progressBar" value="0" max="100"> 0% </progress>
+    </div>
+    <div id="progressParagraphDiv">
+    <p id="progressParagraph">Loaded <span id="loaded">0</span> of <span id="total">0</span> assets.</p>
+    </div>
+  </div>
 </body>
 
 </html>
