@@ -168,13 +168,13 @@ class Outstide {
                     this.scene.add(cloneWall)
                 }
 
-                for (let i = 0; i < 100; i++) {
+                for (let i = 0; i < 80; i++) {
                     var cloneRock = this.rock.clone()
                     cloneRock.position.x = Math.floor(Math.random() * (((this.xScale / 2) - 5) - ((-this.xScale / 2) + 5) + 1)) + ((-this.xScale / 2) + 5);
                     cloneRock.position.z = Math.floor(Math.random() * (((this.zScale / 2) - 5) - ((-this.zScale / 2) + 5) + 1)) + ((-this.zScale / 2) + 5);
                     this.scene.add(cloneRock)
                 }
-                for (let i = 0; i < 100; i++) {
+                for (let i = 0; i < 80; i++) {
                     var cloneSword = this.sword.clone()
                     cloneSword.position.x = Math.floor(Math.random() * (((this.xScale / 2) - 5) - ((-this.xScale / 2) + 5) + 1)) + ((-this.xScale / 2) + 5);
                     cloneSword.position.z = Math.floor(Math.random() * (((this.zScale / 2) - 5) - ((-this.zScale / 2) + 5) + 1)) + ((-this.zScale / 2) + 5);
