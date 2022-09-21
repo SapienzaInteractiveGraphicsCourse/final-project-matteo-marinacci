@@ -2512,7 +2512,7 @@ class Character {
             lhi3y: this.leftHandCurRotation.lhi3y + 0.5,
             lhi4y: this.leftHandCurRotation.lhi4y + 0.5,
 
-        }, 3000).onUpdate(() => {
+        }, 2000).onUpdate(() => {
             this.LeftShoulder.rotation.z = tweenLeftHandArgs.lsz
             this.LeftArm.rotation.z = tweenLeftHandArgs.laz
             this.LeftForeArm.rotation.z = tweenLeftHandArgs.lfaz

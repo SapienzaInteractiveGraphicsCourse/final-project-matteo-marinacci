@@ -309,7 +309,7 @@ class Uid {
                             transparent: true,
                             opacity: 0.01
                         })
-                        this.deathGeometry = new THREE.PlaneGeometry(window.innerWidth*2, window.innerHeight*2)
+                        this.deathGeometry = new THREE.PlaneGeometry(window.innerWidth * 2, window.innerHeight * 2)
                         this.deathMesh = new THREE.Mesh(this.deathGeometry, this.deathMaterial)
                         this.scene.add(this.deathMesh)
                         this.scene.remove(this.killMesh, this.hpLostMesh, this.hpMesh)
@@ -412,12 +412,14 @@ class Uid {
     onWindowResize() {
 
         if (this.flagDeath) {
-            this.deathMesh.scale.set(window.innerWidth*2, window.innerHeight*2)
+            this.deathMesh.scale.set(window.innerWidth * 2, window.innerHeight * 2)
         }
         else {
-            this.hpMesh.position.set((-window.innerWidth / 2) + (this.hpX / 2), (window.innerHeight / 2) - 5, 0)
-            this.hpLostMesh.position.set((-window.innerWidth / 2) + (this.hpLostX / 2), (window.innerHeight / 2) - 5, -1)
-            this.killMesh.position.set((window.innerWidth / 2) - 36, (-window.innerHeight / 2) + 12)
+            if (this.flagShowBars) {
+                this.hpMesh.position.set((-window.innerWidth / 2) + (this.hpX / 2), (window.innerHeight / 2) - 5, 0)
+                this.hpLostMesh.position.set((-window.innerWidth / 2) + (this.hpLostX / 2), (window.innerHeight / 2) - 5, -1)
+                this.killMesh.position.set((window.innerWidth / 2) - 36, (-window.innerHeight / 2) + 12)
+            }
         }
     }
 }
