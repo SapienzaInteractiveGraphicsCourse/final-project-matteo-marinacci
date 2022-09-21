@@ -25,7 +25,6 @@ function main() {
       return false
     })
 
-
     trans = new ammo.btTransform()
 
     setupWorld(ammo)
@@ -33,6 +32,7 @@ function main() {
     handlerAmmo = new HandlerAmmo(trans, world, ammo)
 
     graphics()
+    window.addEventListener('resize', onWindowResize);
 
     models(ammo, handlerAmmo, clock)
 
@@ -173,6 +173,21 @@ function main() {
 
 
     requestAnimationFrame(animate);
+  }
+
+  function onWindowResize(){
+    camera.aspect = window.innerWidth / window.innerHeight
+    camera.updateProjectionMatrix()
+		
+    renderer.setSize( window.innerWidth, window.innerHeight )
+
+    cameraUid.left =  window.innerWidth / -2
+    cameraUid.right = window.innerWidth / 2
+    cameraUid.top = window.innerHeight / 2
+    cameraUid.bottom =  window.innerHeight / -2
+    cameraUid.updateProjectionMatrix()
+		
+    renderer.setSize( window.innerWidth, window.innerHeight )
   }
 
 
