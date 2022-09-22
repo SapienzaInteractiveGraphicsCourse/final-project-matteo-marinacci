@@ -245,6 +245,9 @@ class Character {
     uid = null
     dir = new THREE.Vector3
 
+    tweenMoveWeapon = null
+    tweenMoveWeaponArgs = null
+
 
     constructor(ammo, handlerAmmo, scene, camera, model, xScale, yScale, zScale, xPos, yPos, zPos, tutorialRoom, weapon, portal, uid) {
         this.historyKey = new Set()
@@ -875,9 +878,20 @@ class Character {
                                         this.weaponEquipped.weapon.position.z = 20.0
                                     }
                                     this.equipped = true
+                                    this.tweenMoveWeaponArgs = {
+                                        x: this.weaponEquipped.weapon.children[0].rotation.x,
+                                        y: this.weaponEquipped.weapon.children[0].rotation.y,
+                                        z: this.weaponEquipped.weapon.children[0].rotation.z
+                                    }
+                                    this.tweenMoveWeapon = new TWEEN.Tween(this.tweenMoveWeaponArgs).to({
+                                        y: this.weaponEquipped.weapon.children[0].rotation.y - 0.3
+                                    },1000).onUpdate(()=>{
+                                        this.weaponEquipped.weapon.children[0].rotation.y = this.tweenMoveWeaponArgs.y
+                                    }).repeat(Infinity).yoyo(true).start()
                                 }
                                 else {
                                     this.weaponEquipped.tween.update()
+                                    this.tweenMoveWeapon.update()
                                     this.model.add(this.WeaponPivot)
                                     this.WeaponPivot.add(this.weaponEquipped.weapon)
                                     if (this.weaponEquipped.type == "scythe") {
