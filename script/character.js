@@ -1129,7 +1129,10 @@ class Character {
                                 x: 0,
                                 y: 0,
                                 z: 0
-                            },4000).start()
+                            },4000).onComplete(()=>{
+                                this.scene.remove(this.model)
+                                this.handlerAmmo.removeRigidBodyFromSet(this.model)
+                            }).start()
                         }
                         else{
                             this.tweenDeath.update()

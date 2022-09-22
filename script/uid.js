@@ -77,6 +77,7 @@ class Uid {
     recover = false
     increaseBar = false
     flagDeath = false
+    flagDeathSetted = false
 
     constructor(scene, camera, fontMenu, left, right, arrows) {
         this.scene = scene
@@ -303,11 +304,12 @@ class Uid {
                         this.hpLostMesh.position.set((-window.innerWidth / 2) + (this.hpLostX / 2), (window.innerHeight / 2) - 5, -1)
                     }
 
-                    if (this.flagDeath) {
+                    if (this.flagDeath && !this.flagDeathSetted) {
+                        this.flagDeathSetted = true
                         this.deathMaterial = new THREE.MeshBasicMaterial({
                             color: 0xff0000,
                             transparent: true,
-                            opacity: 0.01
+                            opacity: 0.3
                         })
                         this.deathGeometry = new THREE.PlaneGeometry(window.innerWidth * 2, window.innerHeight * 2)
                         this.deathMesh = new THREE.Mesh(this.deathGeometry, this.deathMaterial)
